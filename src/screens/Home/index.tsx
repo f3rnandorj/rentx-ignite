@@ -2,9 +2,9 @@ import React from "react";
 import { StatusBar } from "react-native";
 import { CarList, Container, Header, HeaderContent, TotalCars } from "./styles";
 
-import Logo from "../assets/logo.svg";
+import Logo from "../../assets/logo.svg";
 import { RFValue } from "react-native-responsive-fontsize";
-import { Car } from "../components/Car";
+import { Car } from "../../components/Car";
 
 export function Home() {
   const carData = {
