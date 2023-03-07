@@ -29,9 +29,9 @@ export const TotalCars = styled.Text`
   color: ${({ theme }) => theme.colors.text};
 `;
 
-// export const CarList = styled(FlatList as new () => FlatList<Car>).attrs({
-//   contentContainerStyle: {
-//     padding: 24,
-//   },
-//   showsVerticalScrollIndicator: false,
-// })``;
+export const CarList = styled(FlatList).attrs({
+  contentContainerStyle: {
+    padding: 24,
+  },
+  showsVerticalScrollIndicator: false,
+})``;
