@@ -19,12 +19,14 @@ import {
   Content,
   Description,
   Details,
+  Footer,
   Header,
   Name,
   Period,
   Price,
   Rent,
 } from "./styles";
+import { Button } from "../../components/Button";
 
 export function CarDetails() {
   function handleGoBack() {}
@@ -65,6 +67,10 @@ export function CarDetails() {
         </Accessories>
         <About>oiosaoiasoinoaindoinasoidnasoidn</About>
       </Content>
+
+      <Footer>
+        <Button title="Confirmar" />
+      </Footer>
     </Container>
   );
 }
