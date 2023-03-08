@@ -1,4 +1,4 @@
-import { Scheduling } from "./src/screens/Scheduling";
+import React from "react";
 import {
   useFonts,
   Inter_400Regular,
@@ -9,10 +9,12 @@ import {
   Archivo_500Medium,
   Archivo_600SemiBold,
 } from "@expo-google-fonts/archivo";
+
 import { ThemeProvider } from "styled-components";
 
 import AppLoading from "expo-app-loading";
 import theme from "./src/styles/theme";
+import { SchedulingDetails } from "./src/screens/SchedulingDetails";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -29,7 +31,7 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Scheduling />
+      <SchedulingDetails />
     </ThemeProvider>
   );
 }
