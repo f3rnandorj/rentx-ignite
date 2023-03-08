@@ -1,5 +1,6 @@
 import React from "react";
 import { useTheme } from "styled-components";
+import { useNavigation } from "@react-navigation/native";
 
 import speedSvg from "../../assets/speed.svg";
 import accelerationSvg from "../../assets/acceleration.svg";
@@ -44,12 +45,16 @@ import { RFValue } from "react-native-responsive-fontsize";
 
 export function SchedulingDetails() {
   const theme = useTheme();
-  function handleGoBack() {}
+  const navigation = useNavigation();
+
+  function handleConfirmRental() {
+    navigation.navigate("SchedulingComplete");
+  }
 
   return (
     <Container>
       <Header>
-        <BackButton onPress={handleGoBack} />
+        <BackButton onPress={() => {}} />
       </Header>
       <CarImages>
         <ImageSlider
@@ -117,7 +122,11 @@ export function SchedulingDetails() {
       </Content>
 
       <Footer>
-        <Button title="Confirmar" />
+        <Button
+          title="Alugar agora"
+          color={theme.colors.success}
+          onPress={handleConfirmRental}
+        />
       </Footer>
     </Container>
   );

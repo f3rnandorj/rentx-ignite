@@ -1,9 +1,11 @@
 import React from "react";
-import { useTheme } from "styled-components";
+import { useNavigation } from "@react-navigation/native";
+
 import { BackButton } from "../../components/BackButton";
 
 import ArrowSvg from "../../assets/arrow.svg";
 
+import { useTheme } from "styled-components";
 import {
   Container,
   Content,
@@ -21,7 +23,12 @@ import { Calendar } from "../../components/Calendar";
 
 export function Scheduling() {
   const theme = useTheme();
-  function handleGoBack() {}
+  const navigation = useNavigation();
+
+  function handleConfirmRental() {
+    navigation.navigate("SchedulingDetails");
+  }
+
   return (
     <Container>
       <Header>
@@ -30,7 +37,7 @@ export function Scheduling() {
           translucent
           backgroundColor="transparent"
         />
-        <BackButton color={theme.colors.shape} onPress={handleGoBack} />
+        <BackButton color={theme.colors.shape} onPress={() => {}} />
         <Title>
           Escolha uma {"\n"}data de início e {"\n"}fim do aluguel
         </Title>
@@ -55,7 +62,7 @@ export function Scheduling() {
       </Content>
 
       <Footer>
-        <Button title="Confirmar" />
+        <Button title="Confirmar" onPress={handleConfirmRental} />
       </Footer>
     </Container>
   );
