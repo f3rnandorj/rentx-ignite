@@ -1,10 +1,14 @@
+import { CarDTO } from "./../dtos/CarDTO";
 export declare global {
   namespace ReactNavigation {
     interface RootParamList {
       Home: undefined;
-      Scheduling: undefined;
+      Scheduling: { car: CarDTO };
       SchedulingComplete: undefined;
-      SchedulingDetails: undefined;
+      SchedulingDetails: {
+        car: CarDTO;
+        dates: {};
+      };
       CarDetails: { car: CarDTO };
     }
   }

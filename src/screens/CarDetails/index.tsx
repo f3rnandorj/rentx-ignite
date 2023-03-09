@@ -27,7 +27,7 @@ import {
 } from "./styles";
 import { Button } from "../../components/Button";
 
-interface Params {
+export interface Params {
   car: CarDTO;
 }
 
@@ -37,7 +37,7 @@ export function CarDetails() {
   const { car } = route.params as Params;
 
   function handleConfirmRental() {
-    navigation.navigate("Scheduling");
+    navigation.navigate("Scheduling", { car });
   }
 
   function handleGoBack() {
