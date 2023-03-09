@@ -12,8 +12,8 @@ export const Container = styled.View`
 `;
 
 export const Header = styled.View`
+  flex: 1;
   width: 100%;
-  height: 325px;
   background-color: ${({ theme }) => theme.colors.header};
   justify-content: center;
   padding: 25px;
@@ -63,7 +63,9 @@ export const Content = styled.ScrollView.attrs({
     paddingBottom: 24,
   },
   showsVerticalScrollIndicator: false,
-})``;
+})`
+  flex: 1;
+`;
 
 export const Footer = styled.View`
   padding: 24px;
