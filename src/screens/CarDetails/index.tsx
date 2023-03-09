@@ -27,7 +27,7 @@ import {
 } from "./styles";
 import { Button } from "../../components/Button";
 
-export interface Params {
+interface Params {
   car: CarDTO;
 }
 

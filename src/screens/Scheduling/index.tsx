@@ -26,7 +26,11 @@ import {
   MarkedDateProps,
 } from "../../components/Calendar";
 import { format, parseISO } from "date-fns";
-import { Params } from "../CarDetails";
+import { CarDTO } from "../../dtos/CarDTO";
+
+export interface Params {
+  car: CarDTO;
+}
 
 interface RentalPeriod {
   startFormatted: string;
@@ -83,7 +87,6 @@ export function Scheduling() {
       endFormatted: format(parseISO(endDate), "dd/MM/yyyy"),
     });
   }
-  console.log(rentalPeriod.startFormatted, rentalPeriod.endFormatted);
   return (
     <Container>
       <Header>
