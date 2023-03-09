@@ -2,12 +2,13 @@ import React from "react";
 import { Feather } from "@expo/vector-icons";
 import { useTheme } from "styled-components";
 
+import { generateInterval } from "./generateInterval";
 import { ptBR } from "./localeConfig";
 
 import {
   Calendar as CustomCalendar,
   LocaleConfig,
-  // DateCallbackHandler,
+  DateData,
 } from "react-native-calendars";
 
 LocaleConfig.locales["pt-br"] = ptBR;
@@ -31,11 +32,11 @@ interface DayProps {
 }
 
 interface CalendarProps {
-  markedDates: MarkedDateProps;
-  // onDayPress: DateCallbackHandler;
+  markedDates?: MarkedDateProps;
+  onDayPress: (date: DateData) => void;
 }
 
-function Calendar({ markedDates }: CalendarProps) {
+function Calendar({ markedDates, onDayPress }: CalendarProps) {
   const theme = useTheme();
 
   return (
@@ -69,8 +70,9 @@ function Calendar({ markedDates }: CalendarProps) {
       minDate={new Date().toDateString()}
       markingType="period"
       markedDates={markedDates}
+      onDayPress={onDayPress}
     />
   );
 }
 
-export { Calendar, MarkedDateProps, DayProps };
+export { Calendar, MarkedDateProps, DayProps, generateInterval };
