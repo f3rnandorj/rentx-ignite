@@ -3,6 +3,7 @@ export declare global {
   namespace ReactNavigation {
     interface RootParamList {
       Home: undefined;
+      MyCars: undefined;
       Scheduling: { car: CarDTO };
       SchedulingComplete: undefined;
       SchedulingDetails: {
