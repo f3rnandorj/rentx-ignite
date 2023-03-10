@@ -1,13 +1,14 @@
-import { TouchableOpacity, TouchableOpacityProps } from "react-native";
+import { TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 import { RFValue } from "react-native-responsive-fontsize";
 
-interface ButtonProps extends TouchableOpacityProps {
+interface ButtonProps {
   color: string;
+  enabled: boolean;
 }
 
 // interface ButtonTextProps {
-//   light: boolean;
+//   light?: boolean;
 // }
 
 export const Container = styled(TouchableOpacity)<ButtonProps>`
