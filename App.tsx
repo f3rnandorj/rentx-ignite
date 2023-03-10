@@ -1,10 +1,7 @@
 import "react-native-gesture-handler";
-import React from "react";
-
-import AppLoading from "expo-app-loading";
+import React, { useEffect, useState } from "react";
 import theme from "./src/styles/theme";
 import { Routes } from "./src/routes";
-
 import { ThemeProvider } from "styled-components";
 import {
   useFonts,
@@ -16,8 +13,10 @@ import {
   Archivo_500Medium,
   Archivo_600SemiBold,
 } from "@expo-google-fonts/archivo";
+import * as SplashScreen from "expo-splash-screen";
 
 export default function App() {
+  const [isAppReady, setIsAppReady] = useState(false);
   const [fontsLoaded] = useFonts({
     Inter_400Regular,
     Inter_500Medium,
@@ -26,8 +25,32 @@ export default function App() {
     Archivo_600SemiBold,
   });
 
-  if (!fontsLoaded) {
-    return <AppLoading />;
+  useEffect(() => {
+    async function show() {
+      try {
+        await SplashScreen.preventAutoHideAsync();
+      } catch (e) {
+        console.warn(e);
+      } finally {
+        setTimeout(() => setIsAppReady(true), 500);
+      }
+    }
+
+    show();
+  }, []);
+
+  useEffect(() => {
+    async function hide() {
+      if (isAppReady) {
+        await SplashScreen.hideAsync();
+      }
+    }
+
+    hide();
+  }, [isAppReady]);
+
+  if (!fontsLoaded || !isAppReady) {
+    return null;
   }
 
   return (
