@@ -12,6 +12,9 @@ export declare global {
       };
       CarDetails: { car: CarDTO };
       SignUpFirstStep: undefined;
+      SignUpSecondStep: {
+        user: { name: string; email: string; driverLicense: string };
+      };
     }
   }
 }
