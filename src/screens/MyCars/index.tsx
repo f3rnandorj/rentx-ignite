@@ -6,6 +6,7 @@ import { useTheme } from "styled-components";
 
 import { BackButton } from "../../components/BackButton";
 import { Car } from "../../components/Car";
+import { LoadAnimation } from "../../components/LoadAnimation";
 
 import { CarDTO } from "../../dtos/CarDTO";
 import { AntDesign } from "@expo/vector-icons";
@@ -27,7 +28,6 @@ import {
   SubTitle,
   Title,
 } from "./styles";
-import { Load } from "../../components/Load";
 
 interface CarProps {
   id: string;
@@ -79,7 +79,7 @@ export function MyCars() {
       </Header>
 
       {isLoading ? (
-        <Load />
+        <LoadAnimation />
       ) : (
         <Content>
           <Appointments>

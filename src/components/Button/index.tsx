@@ -6,14 +6,14 @@ import { Container, Title } from "./styles";
 interface Props extends TouchableOpacityProps {
   title: string;
   color?: string;
-  enabled?: boolean;
+  disabled?: boolean;
   loading?: boolean;
 }
 
 export function Button({
   title,
   color,
-  enabled = true,
+  disabled = false,
   loading = false,
   ...rest
 }: Props) {
@@ -22,8 +22,8 @@ export function Button({
   return (
     <Container
       color={color ? color : theme.colors.main}
-      enabled={enabled}
-      style={{ opacity: enabled === false || loading === true ? 0.5 : 1 }}
+      disabled={disabled}
+      style={{ opacity: disabled === true || loading === true ? 0.5 : 1 }}
       {...rest}
     >
       {loading ? (
