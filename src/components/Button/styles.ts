@@ -4,7 +4,6 @@ import { RFValue } from "react-native-responsive-fontsize";
 
 interface ButtonProps {
   color: string;
-  disabled: boolean;
 }
 
 interface ButtonTextProps {
