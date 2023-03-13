@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ListRenderItem, StatusBar } from "react-native";
+import { BackHandler, ListRenderItem, StatusBar } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useTheme } from "styled-components";
 import { RFValue } from "react-native-responsive-fontsize";
@@ -50,6 +50,12 @@ export function Home() {
     fetchCars();
   }, []);
 
+  useEffect(() => {
+    BackHandler.addEventListener("hardwareBackPress", () => {
+      return true;
+    });
+  });
+
   const renderItem: ListRenderItem<CarDTO> = ({ item }) => (
     <Car data={item} onPress={() => handleCarDetails(item)} />
   );
@@ -66,7 +72,7 @@ export function Home() {
       <Header>
         <HeaderContent>
           <Logo width={RFValue(108)} height={RFValue(12)} />
-          <TotalCars>Total de {cars.length} carros</TotalCars>
+          {!loading && <TotalCars>Total de {cars.length} carros</TotalCars>}
         </HeaderContent>
       </Header>
 
