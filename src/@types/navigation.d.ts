@@ -11,6 +11,7 @@ export declare global {
         dates: {};
       };
       CarDetails: { car: CarDTO };
+      SignUpFirstStep: undefined;
     }
   }
 }
