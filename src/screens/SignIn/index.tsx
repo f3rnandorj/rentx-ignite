@@ -9,6 +9,7 @@ import {
 
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { AppStackParamList } from "../../routes/stack.routes";
+import { useAuth } from "../../hooks/auth";
 
 import { Button } from "../../components/Button";
 import { useTheme } from "styled-components";
@@ -26,6 +27,7 @@ export function SignIn({ navigation }: ScreenProps) {
   const [password, setPassword] = useState("");
 
   const theme = useTheme();
+  const { signIn } = useAuth();
 
   async function handleSignIn() {
     try {
@@ -37,6 +39,8 @@ export function SignIn({ navigation }: ScreenProps) {
       });
 
       await schema.validate({ email, password });
+
+      signIn({ email, password });
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
         return Alert.alert("Opa", error.message);

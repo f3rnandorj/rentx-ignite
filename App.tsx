@@ -1,8 +1,14 @@
 import "react-native-gesture-handler";
 import React, { useEffect, useState } from "react";
+
 import theme from "./src/styles/theme";
-import { Routes } from "./src/routes";
+import { AppProvider } from "./src/hooks";
 import { ThemeProvider } from "styled-components";
+
+import * as SplashScreen from "expo-splash-screen";
+
+import { Routes } from "./src/routes";
+
 import {
   useFonts,
   Inter_400Regular,
@@ -13,7 +19,6 @@ import {
   Archivo_500Medium,
   Archivo_600SemiBold,
 } from "@expo-google-fonts/archivo";
-import * as SplashScreen from "expo-splash-screen";
 
 export default function App() {
   const [isAppReady, setIsAppReady] = useState(false);
@@ -55,7 +60,9 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Routes />
+      <AppProvider>
+        <Routes />
+      </AppProvider>
     </ThemeProvider>
   );
 }
