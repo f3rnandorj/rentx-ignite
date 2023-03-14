@@ -24,6 +24,7 @@ import {
 } from "./styles";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { AppStackParamList } from "../../../routes/stack.routes";
+import { api } from "../../../services/api";
 
 type ScreenProps = NativeStackScreenProps<
   AppStackParamList,
@@ -42,7 +43,7 @@ export function SignUpSecondStep({ navigation, route }: ScreenProps) {
     navigation.goBack();
   }
 
-  function handleRegister() {
+  async function handleRegister() {
     if (!password || !passwordConfirm) {
       return Alert.alert("Informe a senha e a confirmação");
     }
@@ -51,11 +52,23 @@ export function SignUpSecondStep({ navigation, route }: ScreenProps) {
       return Alert.alert("As senhas não são iguais");
     }
 
-    navigation.navigate("Confirmation", {
-      title: "Conta criada",
-      message: "Agora é só fazer login\ne aproveitar",
-      nextScreenRoute: "SignIn",
-    });
+    await api
+      .post("/users", {
+        name: user.name,
+        email: user.email,
+        driver_license: user.driverLicense,
+        password,
+      })
+      .then(() => {
+        navigation.navigate("Confirmation", {
+          title: "Conta criada",
+          message: "Agora é só fazer login\ne aproveitar",
+          nextScreenRoute: "SignIn",
+        });
+      })
+      .catch(() => {
+        Alert.alert("Opa", "não foi possível cadastrar");
+      });
   }
 
   return (
