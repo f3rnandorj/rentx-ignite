@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FlatList, StatusBar } from "react-native";
 
-import { useNavigation } from "@react-navigation/native";
 import { useTheme } from "styled-components";
 
 import { BackButton } from "../../components/BackButton";
@@ -28,6 +27,8 @@ import {
   SubTitle,
   Title,
 } from "./styles";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { AppStackParamList } from "../../routes/stack.routes";
 
 interface CarProps {
   id: string;
@@ -37,11 +38,12 @@ interface CarProps {
   endDate: string;
 }
 
-export function MyCars() {
+type ScreenProps = NativeStackScreenProps<AppStackParamList, "MyCars">;
+
+export function MyCars({ navigation }: ScreenProps) {
   const [cars, setCars] = useState<CarProps[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const navigation = useNavigation();
   const theme = useTheme();
 
   function handleGoBack() {

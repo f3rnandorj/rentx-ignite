@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useTheme } from "styled-components";
-import { useNavigation, useRoute } from "@react-navigation/native";
 import { Alert } from "react-native";
 
 import { Accessory } from "../../components/Accessory";
@@ -10,7 +9,6 @@ import { Button } from "../../components/Button";
 
 import { Feather } from "@expo/vector-icons";
 import { RFValue } from "react-native-responsive-fontsize";
-import { CarDTO } from "../../dtos/CarDTO";
 
 import { getAccessoryIcon } from "../../utils/getAccessoryIcon";
 import { format, parseISO } from "date-fns";
@@ -41,25 +39,26 @@ import {
   RentalPriceQuota,
   RentalPriceTotal,
 } from "./styles";
-
-interface Params {
-  car: CarDTO;
-  dates: string[];
-}
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { AppStackParamList } from "../../routes/stack.routes";
 
 interface RentalPeriod {
   start: string;
   end: string;
 }
 
-export function SchedulingDetails() {
+type ScreenProps = NativeStackScreenProps<
+  AppStackParamList,
+  "SchedulingDetails"
+>;
+
+export function SchedulingDetails({ route, navigation }: ScreenProps) {
   const [rentalPeriod, setRentalPeriod] = useState({} as RentalPeriod);
   const [loading, setLoading] = useState(false);
 
   const theme = useTheme();
-  const navigation = useNavigation();
-  const route = useRoute();
-  const { car, dates } = route.params as Params;
+
+  const { car, dates } = route.params;
 
   const rentTotal = Number(dates.length * car.rent.price);
 

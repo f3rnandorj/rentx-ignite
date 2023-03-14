@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useNavigation } from "@react-navigation/native";
 import {
   KeyboardAvoidingView,
   StatusBar,
@@ -7,19 +6,25 @@ import {
   Keyboard,
   Alert,
 } from "react-native";
+
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { AppStackParamList } from "../../routes/stack.routes";
+
 import { Button } from "../../components/Button";
 import { useTheme } from "styled-components";
 import { Input } from "../../components/Input";
 import { PasswordInput } from "../../components/PasswordButton";
+
 import * as Yup from "yup";
 
 import { Container, Footer, Form, Header, SubTitle, Title } from "./styles";
 
-export function SignIn() {
+type ScreenProps = NativeStackScreenProps<AppStackParamList, "SignIn">;
+
+export function SignIn({ navigation }: ScreenProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const navigation = useNavigation();
   const theme = useTheme();
 
   async function handleSignIn() {

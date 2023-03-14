@@ -5,7 +5,9 @@ import {
   Keyboard,
   Alert,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { AppStackParamList } from "../../../routes/stack.routes";
 
 import { BackButton } from "../../../components/BackButton";
 import { Bullet } from "../../../components/Bullet";
@@ -22,12 +24,12 @@ import {
   FormTitle,
 } from "./styles";
 
-export function SignUpFirstStep() {
+type ScreenProps = NativeStackScreenProps<AppStackParamList, "SignUpFirstStep">;
+
+export function SignUpFirstStep({ navigation }: ScreenProps) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [driverLicense, setDriverLicense] = useState("");
-
-  const navigation = useNavigation();
 
   function handleGoBack() {
     navigation.goBack();

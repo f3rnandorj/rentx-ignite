@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Alert, StatusBar } from "react-native";
-import { useNavigation, useRoute } from "@react-navigation/native";
+import { StatusBar } from "react-native";
 
 import { BackButton } from "../../components/BackButton";
 
@@ -26,18 +25,17 @@ import {
   MarkedDateProps,
 } from "../../components/Calendar";
 import { format, parseISO } from "date-fns";
-import { CarDTO } from "../../dtos/CarDTO";
-
-export interface Params {
-  car: CarDTO;
-}
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { AppStackParamList } from "../../routes/stack.routes";
 
 interface RentalPeriod {
   startFormatted: string;
   endFormatted: string;
 }
 
-export function Scheduling() {
+type ScreenProps = NativeStackScreenProps<AppStackParamList, "Scheduling">;
+
+export function Scheduling({ navigation, route }: ScreenProps) {
   const [markedDates, setMarkedDates] = useState<MarkedDateProps>(
     {} as MarkedDateProps
   );
@@ -47,9 +45,7 @@ export function Scheduling() {
   );
 
   const theme = useTheme();
-  const navigation = useNavigation();
-  const route = useRoute();
-  const { car } = route.params as Params;
+  const { car } = route.params;
 
   function handleConfirmRental() {
     navigation.navigate("SchedulingDetails", {

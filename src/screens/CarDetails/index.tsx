@@ -1,15 +1,16 @@
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, StatusBar } from "react-native";
 import { getStatusBarHeight } from "react-native-iphone-x-helper";
-import { useNavigation, useRoute } from "@react-navigation/native";
+
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { AppStackParamList } from "../../routes/stack.routes";
 
 import { Accessory } from "../../components/Accessory";
 import { BackButton } from "../../components/BackButton";
 import { ImageSlider } from "../../components/ImageSlider";
+import { Button } from "../../components/Button";
 
 import { getAccessoryIcon } from "../../utils/getAccessoryIcon";
-
-import { CarDTO } from "../../dtos/CarDTO";
 
 import {
   About,
@@ -26,7 +27,7 @@ import {
   Price,
   Rent,
 } from "./styles";
-import { Button } from "../../components/Button";
+
 import Animated, {
   Extrapolate,
   interpolate,
@@ -34,18 +35,14 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
 } from "react-native-reanimated";
-import { StatusBar } from "react-native";
+
 import { useTheme } from "styled-components";
 
-interface Params {
-  car: CarDTO;
-}
+type ScreenProps = NativeStackScreenProps<AppStackParamList, "CarDetails">;
 
-export function CarDetails() {
-  const navigation = useNavigation();
+export function CarDetails({ navigation, route }: ScreenProps) {
   const theme = useTheme();
-  const route = useRoute();
-  const { car } = route.params as Params;
+  const { car } = route.params;
 
   const scrollY = useSharedValue(0);
   const scrollHandler = useAnimatedScrollHandler((event) => {

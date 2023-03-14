@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { BackHandler, ListRenderItem, StatusBar } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 import { useTheme } from "styled-components";
 import { RFValue } from "react-native-responsive-fontsize";
 import { Ionicons } from "@expo/vector-icons";
+
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { AppStackParamList } from "../../routes/stack.routes";
 
 import { Car } from "../../components/Car";
 import { LoadAnimation } from "../../components/LoadAnimation";
@@ -21,10 +23,12 @@ import {
   MyCarsButton,
 } from "./styles";
 
-export function Home() {
+type ScreenProps = NativeStackScreenProps<AppStackParamList, "Home">;
+
+export function Home({ navigation }: ScreenProps) {
   const [cars, setCars] = useState<CarDTO[]>([]);
   const [loading, setLoading] = useState(true);
-  const navigation = useNavigation();
+
   const theme = useTheme();
 
   function handleCarDetails(car: CarDTO) {

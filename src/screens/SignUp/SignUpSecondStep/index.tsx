@@ -11,7 +11,6 @@ import { Bullet } from "../../../components/Bullet";
 import { PasswordInput } from "../../../components/PasswordButton";
 import { Button } from "../../../components/Button";
 
-import { useNavigation, useRoute } from "@react-navigation/native";
 import { useTheme } from "styled-components";
 
 import {
@@ -23,24 +22,21 @@ import {
   Form,
   FormTitle,
 } from "./styles";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { AppStackParamList } from "../../../routes/stack.routes";
 
-interface Params {
-  user: {
-    name: string;
-    email: string;
-    driverLicense: string;
-  };
-}
+type ScreenProps = NativeStackScreenProps<
+  AppStackParamList,
+  "SignUpSecondStep"
+>;
 
-export function SignUpSecondStep() {
+export function SignUpSecondStep({ navigation, route }: ScreenProps) {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
 
   const theme = useTheme();
-  const navigation = useNavigation();
-  const route = useRoute();
 
-  const { user } = route.params as Params;
+  const { user } = route.params;
 
   function handleGoBack() {
     navigation.goBack();

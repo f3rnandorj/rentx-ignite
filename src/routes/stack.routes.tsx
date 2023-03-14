@@ -25,7 +25,7 @@ export interface AppStackParamList extends ParamListBase {
   };
   SchedulingDetails: {
     car: CarDTO;
-    dates: {};
+    dates: string[];
   };
   CarDetails: { car: CarDTO };
   SignUpFirstStep: undefined;
