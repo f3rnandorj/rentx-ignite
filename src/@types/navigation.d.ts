@@ -5,7 +5,12 @@ export declare global {
       Home: undefined;
       MyCars: undefined;
       Scheduling: { car: CarDTO };
-      SchedulingComplete: undefined;
+      Confirmation: {
+        title: string;
+        message: string;
+        nextScreenRoute: string;
+      };
+      nextScreenRoute: string;
       SchedulingDetails: {
         car: CarDTO;
         dates: {};
@@ -13,7 +18,11 @@ export declare global {
       CarDetails: { car: CarDTO };
       SignUpFirstStep: undefined;
       SignUpSecondStep: {
-        user: { name: string; email: string; driverLicense: string };
+        user: {
+          name: string;
+          email: string;
+          driverLicense: string;
+        };
       };
     }
   }

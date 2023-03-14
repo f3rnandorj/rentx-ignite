@@ -5,14 +5,40 @@ import { Home } from "../screens/Home";
 import { CarDetails } from "../screens/CarDetails";
 import { Scheduling } from "../screens/Scheduling";
 import { SchedulingDetails } from "../screens/SchedulingDetails";
-import { SchedulingComplete } from "../screens/SchedulingComplete";
+import { Confirmation } from "../screens/Confirmation";
 import { MyCars } from "../screens/MyCars";
 import { Splash } from "../screens/Splash";
 import { SignIn } from "../screens/SignIn";
 import { SignUpFirstStep } from "../screens/SignUp/SignUpFirstStep";
 import { SignUpSecondStep } from "../screens/SignUp/SignUpSecondStep";
+import { CarDTO } from "../dtos/CarDTO";
+import { ParamListBase } from "@react-navigation/native";
 
-const { Navigator, Screen } = createNativeStackNavigator();
+export interface AppStackParamList extends ParamListBase {
+  Home: undefined;
+  MyCars: undefined;
+  Scheduling: { car: CarDTO };
+  Confirmation: {
+    title: string;
+    message: string;
+    nextScreenRoute: string;
+  };
+  SchedulingDetails: {
+    car: CarDTO;
+    dates: {};
+  };
+  CarDetails: { car: CarDTO };
+  SignUpFirstStep: undefined;
+  SignUpSecondStep: {
+    user: {
+      name: string;
+      email: string;
+      driverLicense: string;
+    };
+  };
+}
+
+const { Navigator, Screen } = createNativeStackNavigator<AppStackParamList>();
 
 export function StackRoutes() {
   return (
@@ -30,7 +56,7 @@ export function StackRoutes() {
       <Screen name="CarDetails" component={CarDetails}></Screen>
       <Screen name="Scheduling" component={Scheduling}></Screen>
       <Screen name="SchedulingDetails" component={SchedulingDetails}></Screen>
-      <Screen name="SchedulingComplete" component={SchedulingComplete}></Screen>
+      <Screen name="Confirmation" component={Confirmation}></Screen>
     </Navigator>
   );
 }
